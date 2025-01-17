@@ -1,11 +1,12 @@
-# Sample Snack app
+# Bhaasha
 
-Open the `App.js` file to start writing some code. You can preview the changes directly on your phone or tablet by scanning the **QR code** or use the iOS or Android emulators. When you're done, click **Save** and share the link!
+## Learning app with linguistic Methods to master languages quickly.
 
-When you're ready to see everything that Expo provides (or if you want to use your own editor) you can **Download** your project and use it with [expo cli](https://docs.expo.dev/get-started/installation/#expo-cli)).
-
-All projects created in Snack are publicly available, so you can easily share the link to this project via link, or embed it on a web page with the `<>` button.
-
-If you're having problems, you can tweet to us [@expo](https://twitter.com/expo) or ask in our [forums](https://forums.expo.dev/c/expo-dev-tools/61) or [Discord](https://chat.expo.dev/).
-
-Snack is Open Source. You can find the code on the [GitHub repo](https://github.com/expo/snack).
+- Choose the languages to be included.
+- Choose the tech stack.
+- Build an app.
+- Extract quality data from social media apps by building pipelines.
+- Train ML models
+- Build your own api's to interact with users
+- Figure out the streams of revenues
+- Launch and make it into forbes.
