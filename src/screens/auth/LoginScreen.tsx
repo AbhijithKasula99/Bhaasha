@@ -1,9 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { View, Animated, StyleSheet, TouchableOpacity, Text } from 'react-native';
+import * as Font from 'expo-font'; // Import font loader
+import AppLoading from 'expo-app-loading'; // Optional: For loading screen
 
 export default function LoginScreen({ navigation }: any) {
   const logoPosition = useRef(new Animated.Value(-300)).current; // Start off-screen to the left
   const buttonPosition = useRef(new Animated.Value(-700)).current; // Start buttons off-screen to the left
+  const [isFontLoaded, setIsFontLoaded] = useState(false); // Track font loading
   const [currentLanguageIndex, setCurrentLanguageIndex] = useState(0); // Track the current translation
 
   const translations = [
@@ -16,6 +19,16 @@ export default function LoginScreen({ navigation }: any) {
     'புதிய பயனர்?', // Tamil
     'नया उपयोगकर्ता?', // Hindi
   ];
+
+  useEffect(() => {
+    async function loadFonts() {
+      await Font.loadAsync({
+        Almarai: require('../../../assets/fonts/Almarai-Regular.ttf'),
+      });
+      setIsFontLoaded(true);
+    }
+    loadFonts();
+  }, []);
 
   useEffect(() => {
     // Logo animation: Move left to right
@@ -40,6 +53,10 @@ export default function LoginScreen({ navigation }: any) {
     // Cleanup interval on unmount
     return () => clearInterval(intervalId);
   }, [logoPosition, buttonPosition, translations.length]);
+
+  if (!isFontLoaded) {
+    return <AppLoading />;
+  }
 
   const handleLogin = () => {
     // Add authentication logic here
@@ -86,7 +103,7 @@ export default function LoginScreen({ navigation }: any) {
           style={styles.button}
           onPress={() => navigation.navigate('Signup')}
         >
-          <Text style={styles.buttonText}>Signup</Text>
+          <Text style={styles.buttonText}>Sign up</Text>
         </TouchableOpacity>
       </Animated.View>
     </View>
@@ -118,10 +135,16 @@ const styles = StyleSheet.create({
     borderRadius: 30, // Rounded corners
     alignItems: 'center',
     marginVertical: 10,
+    shadowColor: '#000', // Button shadow
+    shadowOpacity: 0.2,
+    shadowOffset: { width: 0, height: 3 },
+    shadowRadius: 5,
+    elevation: 3, // Shadow for Android
   },
   buttonText: {
     color: '#ffffff', // White text
     fontSize: 16,
+    fontFamily: 'Almarai', // Apply Almarai font
     fontWeight: 'bold',
   },
   separatorContainer: {
@@ -138,6 +161,7 @@ const styles = StyleSheet.create({
   },
   separatorText: {
     fontSize: 14,
+    fontFamily: 'Almarai', // Apply Almarai font
     color: '#666', // Gray text for subtle contrast
     fontWeight: 'bold',
   },
